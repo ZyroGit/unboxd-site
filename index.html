@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un-Boxd — Open it Up!</title>
+<meta name="description" content="Un-Boxd — curated gift boxes and lifestyle drops. Order on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <img class="logo-mark" src="assets/logo.jpg" alt="Un-Boxd logo">
+      Un-Boxd
+    </a>
+    <div class="nav-links">
+      <a href="#collection">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Order on WhatsApp</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <span class="eyebrow hero-eyebrow">Curated gifting · Cairo, Egypt</span>
+    <h1>Every box is a <em>small reveal.</em></h1>
+    <p class="sub">Hand-picked gift boxes and lifestyle drops, wrapped with care and delivered across Egypt. Ordering is a WhatsApp message away.</p>
+
+    <div class="hero-actions">
+      <a href="#collection" class="btn btn-primary">Shop the Collection</a>
+      <a href="#contact" class="btn btn-ghost">Order on WhatsApp</a>
+    </div>
+
+    <div class="box-stage" aria-hidden="true">
+      <div class="box-scene">
+        <div class="sparkle s1">✦</div>
+        <div class="sparkle s2">✦</div>
+        <div class="sparkle s3">✦</div>
+        <div class="flap flap-left"></div>
+        <div class="flap flap-right"></div>
+        <div class="box-base"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section" id="collection">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Open it Up!</span>
+        <h2>The Collection</h2>
+        <p>Every box below can be customized — message us on WhatsApp for personal notes, colors, or a fully custom build.</p>
+      </div>
+
+      <div class="grid" id="product-grid">
+        <!-- Product cards are generated from products-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <div class="container about-inner">
+      <div class="about-copy">
+        <span class="eyebrow">Our Story</span>
+        <h2>We believe a gift should feel like an event.</h2>
+        <p>Un-Boxd started as a simple idea: the moment someone opens a box should feel considered, not generic. Every item we source is chosen for that first reaction — the pause, the smile, the "open it up" moment.</p>
+        <p>Based in Egypt, shipped with care, and always ready to build something custom if you tell us who it's for.</p>
+      </div>
+      <div class="about-badge">
+        <img src="assets/logo.jpg" alt="Un-Boxd badge">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="contact">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--gold-light)">Let's Get You a Box</span>
+    <h2>Ready to open something up?</h2>
+    <p class="sub">Send us a message with what you're looking for, who it's for, and your delivery area — we'll take it from there.</p>
+
+    <div class="footer-links">
+      <a href="#" id="whatsapp-link" class="btn btn-primary" target="_blank" rel="noopener">Message us on WhatsApp</a>
+      <a href="#" id="instagram-link" class="btn btn-ghost" target="_blank" rel="noopener">Follow on Instagram</a>
+    </div>
+
+    <div class="dot-divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> Un-Boxd. Open it Up!
+    </div>
+  </div>
+</footer>
+
+<script src="products-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
