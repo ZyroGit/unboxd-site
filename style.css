@@ -194,86 +194,230 @@ h1, h2, h3 {
 }
 .btn-ghost:hover { background: var(--ink); color: var(--white); }
 
-/* --- The opening box --- */
+/* --- Box getting wrapped and stamped for shipment --- */
 .box-stage {
-  margin: 64px auto 0;
-  width: 220px;
-  height: 200px;
+  margin: 50px auto 0;
+  width: 260px;
+  height: 220px;
   position: relative;
-  perspective: 900px;
 }
-.box-scene {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-}
-.box-base {
+
+.box-ground-shadow {
   position: absolute;
-  left: 20px; right: 20px; bottom: 0;
-  height: 120px;
-  background: linear-gradient(160deg, var(--gold-light), var(--gold));
-  border-radius: 6px;
-  box-shadow: var(--shadow-lift);
+  left: 50%;
+  top: 178px;
+  width: 200px;
+  height: 24px;
+  margin-left: -100px;
+  background: radial-gradient(ellipse at center, rgba(90, 65, 24, 0.35), transparent 72%);
+  filter: blur(3px);
+  opacity: 0;
+  animation: shadowFadeIn 0.6s ease forwards;
+  animation-delay: 0.1s;
 }
-.box-base::after {
+@keyframes shadowFadeIn { to { opacity: 1; } }
+
+.box-wrap {
+  position: absolute;
+  left: 50%;
+  top: 36px;
+  width: 190px;
+  height: 130px;
+  margin-left: -95px;
+  opacity: 0;
+  transform: scale(0.85);
+  animation: boxPopIn 0.5s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes boxPopIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+.box-flat {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, #E3C583, #C99A42 55%, #B8862E);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lift), inset 0 0 0 1px rgba(90,65,24,0.15);
+}
+.box-flat::before {
+  content: "";
+  position: absolute;
+  left: 14px; right: 14px; top: 38%;
+  height: 1px;
+  background: rgba(90, 65, 24, 0.18);
+}
+.box-flat::after {
   content: "";
   position: absolute;
   left: 0; right: 0; top: 0;
-  height: 3px;
-  background: rgba(255,255,255,0.35);
+  height: 40%;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.28), transparent);
 }
-.flap {
+
+/* Tape crosses the box, growing outward from the center */
+.tape-h, .tape-v {
   position: absolute;
-  width: 90px;
-  height: 90px;
-  top: 20px;
-  background: var(--gold-deep);
-  border-radius: 4px;
-  transform-origin: bottom center;
-  animation-duration: 1.4s;
-  animation-timing-function: cubic-bezier(.2,.9,.3,1.2);
-  animation-fill-mode: forwards;
-}
-.flap-left {
-  left: 8px;
-  background: linear-gradient(120deg, var(--gold), var(--gold-deep));
-  transform: rotateX(0deg) rotate(-6deg);
-  animation-name: openLeft;
-}
-.flap-right {
-  right: 8px;
-  background: linear-gradient(240deg, var(--gold), var(--gold-deep));
-  transform: rotateX(0deg) rotate(6deg);
-  animation-name: openRight;
-}
-@keyframes openLeft {
-  0%   { transform: rotate(-6deg) rotateX(0deg); }
-  100% { transform: rotate(-38deg) rotateX(-140deg); }
-}
-@keyframes openRight {
-  0%   { transform: rotate(6deg) rotateX(0deg); }
-  100% { transform: rotate(38deg) rotateX(-140deg); }
-}
-.sparkle {
-  position: absolute;
-  color: var(--gold);
+  background: repeating-linear-gradient(115deg, #F6EEDC, #F6EEDC 7px, #E9D9AF 7px, #E9D9AF 14px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.16);
+  border-radius: 2px;
   opacity: 0;
-  animation: sparklePop 1.4s ease forwards;
+  overflow: hidden;
+  z-index: 2;
 }
-.sparkle.s1 { top: -6px; left: 50%; font-size: 22px; animation-delay: 0.9s; }
-.sparkle.s2 { top: 6px; left: 62%; font-size: 14px; animation-delay: 1.05s; }
-.sparkle.s3 { top: 2px; left: 36%; font-size: 12px; animation-delay: 1.15s; }
-@keyframes sparklePop {
-  0%   { opacity: 0; transform: scale(0.4) translateY(6px); }
-  40%  { opacity: 1; }
-  100% { opacity: 0; transform: scale(1) translateY(-14px); }
+.tape-h {
+  left: -12px; right: -12px;
+  top: 50%;
+  height: 26px;
+  margin-top: -13px;
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: growX 0.45s cubic-bezier(.3,.5,.3,1) forwards;
+  animation-delay: 0.45s;
+}
+.tape-v {
+  top: -12px; bottom: -12px;
+  left: 50%;
+  width: 26px;
+  margin-left: -13px;
+  transform: scaleY(0);
+  transform-origin: center;
+  animation: growY 0.45s cubic-bezier(.3,.5,.3,1) forwards;
+  animation-delay: 0.85s;
+}
+@keyframes growX {
+  0%   { opacity: 0; transform: scaleX(0); }
+  20%  { opacity: 1; }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+@keyframes growY {
+  0%   { opacity: 0; transform: scaleY(0); }
+  20%  { opacity: 1; }
+  100% { opacity: 1; transform: scaleY(1); }
+}
+.tape-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.75) 50%, transparent 70%);
+  opacity: 0;
+  animation: shineSweep 0.5s ease forwards;
+}
+.tape-shine-h { transform: translateX(-160%); animation-delay: 1.0s; }
+.tape-shine-v { transform: translateX(-160%); animation-delay: 1.35s; }
+@keyframes shineSweep {
+  0%   { opacity: 1; }
+  100% { opacity: 1; transform: translateX(160%); }
+}
+
+/* Wax-seal stamp made from the real logo — lands right where the tape crosses */
+.wax-seal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58px;
+  height: 58px;
+  margin: -29px 0 0 -29px;
+  background: var(--cream);
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.32), 0 0 0 3px rgba(255,255,255,0.6);
+  opacity: 0;
+  transform: scale(0);
+  animation: sealStamp 0.5s cubic-bezier(.34,1.56,.64,1) forwards;
+  animation-delay: 1.5s;
+  z-index: 3;
+}
+.wax-seal-logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: url('assets/logo.jpg');
+  background-size: 155%;
+  background-position: center;
+  box-shadow: inset 0 0 0 1.5px rgba(184, 134, 46, 0.3);
+}
+@keyframes sealStamp {
+  0%   { opacity: 0; transform: scale(1.9) rotate(-12deg); }
+  55%  { opacity: 1; transform: scale(0.88) rotate(3deg); }
+  75%  { transform: scale(1.08) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Gift tag, drops in then gently swings, hanging off the box corner */
+.gift-tag {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  opacity: 0;
+  animation: tagFadeIn 0.4s ease forwards;
+  animation-delay: 1.9s;
+  z-index: 4;
+}
+@keyframes tagFadeIn { to { opacity: 1; } }
+
+.gift-tag-swing {
+  transform-origin: top center;
+  animation: tagSwing 3.6s ease-in-out infinite;
+  animation-delay: 1.9s;
+}
+@keyframes tagSwing {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(4deg); }
+}
+
+.tag-string {
+  width: 1.5px;
+  height: 16px;
+  background: var(--ink-soft);
+  margin: 0 auto;
+}
+.tag-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 12px 6px 16px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  box-shadow: var(--shadow-soft);
+}
+.tag-hole {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  margin-top: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid var(--line);
+}
+.tag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flap, .sparkle { animation: none !important; }
-  .flap-left { transform: rotate(-34deg) rotateX(-120deg); }
-  .flap-right { transform: rotate(34deg) rotateX(-120deg); }
+  .box-wrap, .tape-h, .tape-v, .tape-shine, .wax-seal, .gift-tag, .gift-tag-swing, .box-ground-shadow {
+    animation: none !important;
+  }
+  .box-ground-shadow { opacity: 1; }
+  .box-wrap { opacity: 1; transform: scale(1); }
+  .tape-h { opacity: 1; transform: scaleX(1); }
+  .tape-v { opacity: 1; transform: scaleY(1); }
+  .wax-seal { opacity: 1; transform: scale(1); }
+  .gift-tag { opacity: 1; }
+  .gift-tag-swing { transform: rotate(0deg); }
 }
 
 /* ==========================================================
