@@ -4,13 +4,13 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
 function waLink(message) {
-  const num = (window.STORE_SETTINGS && STORE_SETTINGS.whatsappNumber) || "";
+  const num = (typeof STORE_SETTINGS !== "undefined" && STORE_SETTINGS.whatsappNumber) || "";
   return `https://wa.me/${num}?text=${encodeURIComponent(message)}`;
 }
 
 // Footer WhatsApp / Instagram links
 document.getElementById("whatsapp-link").href = waLink("Hi Un-Boxd! I'd like to know more about your boxes.");
-const igHandle = (window.STORE_SETTINGS && STORE_SETTINGS.instagramHandle) || "";
+const igHandle = (typeof STORE_SETTINGS !== "undefined" && STORE_SETTINGS.instagramHandle) || "";
 document.getElementById("instagram-link").href = `https://instagram.com/${igHandle}`;
 
 // Render product grid
@@ -58,4 +58,4 @@ function renderProducts(products) {
   });
 }
 
-renderProducts(window.PRODUCTS || []);
+renderProducts(typeof PRODUCTS !== "undefined" ? PRODUCTS : []);
