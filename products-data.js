@@ -31,6 +31,14 @@
 
 const PRODUCTS = [
   {
+    name: "Test Product — Delete Me",
+    price: 299,
+    image: "https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=800",
+    description: "Just here to preview how a new product card looks. Safe to remove anytime.",
+    badge: "New",
+    inStock: true
+  },
+  {
     name: "The Golden Hour Box",
     price: 650,
     image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=800",
