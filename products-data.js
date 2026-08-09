@@ -33,7 +33,7 @@ const PRODUCTS = [
   {
     name: "Test Product — Delete Me",
     price: 299,
-    image: "https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=800",
+    image: "https://placehold.co/800x640/F1E7D2/7A5A22?text=Test+Product",
     description: "Just here to preview how a new product card looks. Safe to remove anytime.",
     badge: "New",
     inStock: true
@@ -41,7 +41,7 @@ const PRODUCTS = [
   {
     name: "The Golden Hour Box",
     price: 650,
-    image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=800",
+    image: "https://placehold.co/800x640/D9B872/2A2420?text=Golden+Hour+Box",
     description: "A curated candle, journal & treat set for a slow evening in.",
     badge: "Best Seller",
     inStock: true
@@ -49,7 +49,7 @@ const PRODUCTS = [
   {
     name: "Say It With Flowers",
     price: 480,
-    image: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=800",
+    image: "https://placehold.co/800x640/E3C583/2A2420?text=Say+It+With+Flowers",
     description: "Dried florals wrapped in kraft paper with a handwritten note.",
     badge: "New",
     inStock: true
@@ -57,7 +57,7 @@ const PRODUCTS = [
   {
     name: "Sweet Tooth Crate",
     price: 390,
-    image: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800",
+    image: "https://placehold.co/800x640/C99A42/2A2420?text=Sweet+Tooth+Crate",
     description: "A mix of imported chocolates and local artisanal sweets.",
     badge: "",
     inStock: true
@@ -65,7 +65,7 @@ const PRODUCTS = [
   {
     name: "The Self-Care Reveal",
     price: 720,
-    image: "https://images.unsplash.com/photo-1601049676869-702ea24cfd58?w=800",
+    image: "https://placehold.co/800x640/B8862E/FAF6ED?text=Self-Care+Reveal",
     description: "Bath salts, a silk scrunchie, and a scented soy candle.",
     badge: "",
     inStock: true
@@ -73,7 +73,7 @@ const PRODUCTS = [
   {
     name: "Little Black Box",
     price: 550,
-    image: "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=800",
+    image: "https://placehold.co/800x640/7A5A22/FAF6ED?text=Little+Black+Box",
     description: "Minimal jewelry box with a rotating monthly surprise piece.",
     badge: "Limited",
     inStock: false
@@ -81,7 +81,7 @@ const PRODUCTS = [
   {
     name: "Coffee & Company",
     price: 410,
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800",
+    image: "https://placehold.co/800x640/6B4A1C/FAF6ED?text=Coffee+%26+Company",
     description: "Specialty beans, a ceramic mug, and a pack of biscotti.",
     badge: "",
     inStock: true
