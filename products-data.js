@@ -12,6 +12,7 @@
    FIELDS
    ---------------------
    name        -> Product name shown on the card
+   category    -> Must be exactly one of: "Bundles", "Boxes", "Gifts"
    price       -> Number only, no "EGP" or commas (e.g. 450 not "450 EGP")
    image       -> A direct image URL (must end in .jpg/.png/.webp etc,
                   and be a DIRECT link to the image, not a page that
@@ -32,6 +33,7 @@
 const PRODUCTS = [
   {
     name: "Test Product — Delete Me",
+    category: "Boxes",
     price: 299,
     image: "https://placehold.co/800x640/F1E7D2/7A5A22?text=Test+Product",
     description: "Just here to preview how a new product card looks. Safe to remove anytime.",
@@ -40,6 +42,7 @@ const PRODUCTS = [
   },
   {
     name: "The Golden Hour Box",
+    category: "Boxes",
     price: 650,
     image: "https://placehold.co/800x640/D9B872/2A2420?text=Golden+Hour+Box",
     description: "A curated candle, journal & treat set for a slow evening in.",
@@ -48,6 +51,7 @@ const PRODUCTS = [
   },
   {
     name: "Say It With Flowers",
+    category: "Gifts",
     price: 480,
     image: "https://placehold.co/800x640/E3C583/2A2420?text=Say+It+With+Flowers",
     description: "Dried florals wrapped in kraft paper with a handwritten note.",
@@ -56,6 +60,7 @@ const PRODUCTS = [
   },
   {
     name: "Sweet Tooth Crate",
+    category: "Bundles",
     price: 390,
     image: "https://placehold.co/800x640/C99A42/2A2420?text=Sweet+Tooth+Crate",
     description: "A mix of imported chocolates and local artisanal sweets.",
@@ -64,6 +69,7 @@ const PRODUCTS = [
   },
   {
     name: "The Self-Care Reveal",
+    category: "Boxes",
     price: 720,
     image: "https://placehold.co/800x640/B8862E/FAF6ED?text=Self-Care+Reveal",
     description: "Bath salts, a silk scrunchie, and a scented soy candle.",
@@ -72,6 +78,7 @@ const PRODUCTS = [
   },
   {
     name: "Little Black Box",
+    category: "Gifts",
     price: 550,
     image: "https://placehold.co/800x640/7A5A22/FAF6ED?text=Little+Black+Box",
     description: "Minimal jewelry box with a rotating monthly surprise piece.",
@@ -80,6 +87,7 @@ const PRODUCTS = [
   },
   {
     name: "Coffee & Company",
+    category: "Bundles",
     price: 410,
     image: "https://placehold.co/800x640/6B4A1C/FAF6ED?text=Coffee+%26+Company",
     description: "Specialty beans, a ceramic mug, and a pack of biscotti.",
