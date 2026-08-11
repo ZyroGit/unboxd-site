@@ -467,6 +467,38 @@ h1, h2, h3 {
 }
 .section-head p { color: var(--ink-soft); margin-top: 14px; }
 
+/* Category filter tabs */
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.tab-btn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.tab-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-deep);
+  transform: translateY(-1px);
+}
+.tab-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
