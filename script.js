@@ -59,3 +59,21 @@ function renderProducts(products) {
 }
 
 renderProducts(typeof PRODUCTS !== "undefined" ? PRODUCTS : []);
+
+// Category filter tabs
+const allProducts = typeof PRODUCTS !== "undefined" ? PRODUCTS : [];
+const tabButtons = document.querySelectorAll(".tab-btn");
+
+tabButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    tabButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const category = btn.dataset.category;
+    const filtered = category === "All"
+      ? allProducts
+      : allProducts.filter((p) => p.category === category);
+
+    renderProducts(filtered);
+  });
+});
