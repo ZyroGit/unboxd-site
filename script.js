@@ -3,6 +3,10 @@
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
+function esc(v) {
+  return String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
 function waLink(message) {
   const num = (typeof STORE_SETTINGS !== "undefined" && STORE_SETTINGS.whatsappNumber) || "";
   return `https://wa.me/${num}?text=${encodeURIComponent(message)}`;
@@ -31,7 +35,7 @@ function renderProducts(products) {
     card.className = "card";
 
     const badgeHtml = p.badge
-      ? `<span class="badge">${p.badge}</span>`
+      ? `<span class="badge">${esc(p.badge)}</span>`
       : (!p.inStock ? `<span class="badge sold-out">Sold Out</span>` : "");
 
     const btnHtml = p.inStock
@@ -41,14 +45,14 @@ function renderProducts(products) {
     card.innerHTML = `
       <div class="card-tag-hole"></div>
       <div class="card-media">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/600x480/F1E7D2/7A5A22?text=Un-Boxd'">
+        <img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy" onerror="this.src='https://placehold.co/600x480/F1E7D2/7A5A22?text=Un-Boxd'">
         ${badgeHtml}
       </div>
       <div class="card-body">
-        <h3>${p.name}</h3>
-        <p class="desc">${p.description || ""}</p>
+        <h3>${esc(p.name)}</h3>
+        <p class="desc">${esc(p.description)}</p>
         <div class="card-foot">
-          <span class="price">${p.price} <small>EGP</small></span>
+          <span class="price">${esc(p.price)} <small>EGP</small></span>
           ${btnHtml}
         </div>
       </div>
@@ -107,7 +111,14 @@ function saveCart(cart) {
   } catch (e) { /* storage unavailable, ignore */ }
 }
 
-let cart = loadCart();
+// Drop anything no longer in the catalog / sold out, and refresh prices from the catalog
+let cart = loadCart()
+  .map((i) => {
+    const p = (typeof PRODUCTS !== "undefined" ? PRODUCTS : []).find((x) => x.name === i.name);
+    return p && p.inStock ? { name: p.name, price: p.price, image: p.image, qty: Math.max(1, parseInt(i.qty, 10) || 1) } : null;
+  })
+  .filter(Boolean);
+saveCart(cart);
 
 function addToCart(product) {
   const existing = cart.find((item) => item.name === product.name);
@@ -166,17 +177,17 @@ function renderCart() {
 
   cartItemsEl.innerHTML = cart.map((item) => `
     <div class="cart-item">
-      <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/120x120/F1E7D2/7A5A22?text=Un-Boxd'">
+      <img src="${esc(item.image)}" alt="${esc(item.name)}" onerror="this.src='https://placehold.co/120x120/F1E7D2/7A5A22?text=Un-Boxd'">
       <div class="cart-item-info">
-        <h4>${item.name}</h4>
+        <h4>${esc(item.name)}</h4>
         <div class="cart-item-price">${item.price} EGP</div>
       </div>
       <div class="qty-stepper">
-        <button type="button" data-action="dec" data-name="${item.name}">−</button>
+        <button type="button" data-action="dec" data-name="${esc(item.name)}">−</button>
         <span>${item.qty}</span>
-        <button type="button" data-action="inc" data-name="${item.name}">+</button>
+        <button type="button" data-action="inc" data-name="${esc(item.name)}">+</button>
       </div>
-      <button class="cart-item-remove" type="button" data-action="remove" data-name="${item.name}" aria-label="Remove item">&times;</button>
+      <button class="cart-item-remove" type="button" data-action="remove" data-name="${esc(item.name)}" aria-label="Remove item">&times;</button>
     </div>
   `).join("");
 }
@@ -235,7 +246,7 @@ function closeCheckout() {
 function renderCheckoutSummary() {
   const rows = cart.map((item) => `
     <div class="checkout-summary-row">
-      <span>${item.name} × ${item.qty}</span>
+      <span>${esc(item.name)} × ${item.qty}</span>
       <span>${item.price * item.qty} EGP</span>
     </div>
   `).join("");
@@ -293,4 +304,11 @@ document.getElementById("checkout-form").addEventListener("submit", (e) => {
   renderCart();
   closeCheckout();
   e.target.reset();
+});
+
+// Esc closes whichever panel is open
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  closeCart();
+  closeCheckout();
 });

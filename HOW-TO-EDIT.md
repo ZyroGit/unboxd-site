@@ -32,7 +32,7 @@ Find the product, edit the text between the quotes (or the number for price), sa
 
 ## Mark something sold out
 
-Change `inStock: true` to `inStock: false`. The card will show "Sold Out" and the WhatsApp button turns off automatically.
+Change `inStock: true` to `inStock: false`. The card will show "Sold Out", "Add to Cart" turns off, and the item is removed from any customer's saved cart.
 
 ## Add a badge
 
@@ -55,7 +55,9 @@ const STORE_SETTINGS = {
 };
 ```
 
-Update these once and every "Order on WhatsApp" button across the site uses them automatically — including a pre-filled message with the product name and price.
+Update these once. Customers add boxes to the cart and check out with their name, phone and address (cash on delivery); the order then opens in WhatsApp to your number as a pre-filled message. **Replace the placeholder number before going live.**
+
+Shared images (logo, favicon) live in the `assets/` folder — upload it along with the other files.
 
 ## Getting it live
 

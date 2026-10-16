@@ -32,15 +32,6 @@
 
 const PRODUCTS = [
   {
-    name: "Test Product — Delete Me",
-    category: "Boxes",
-    price: 299,
-    image: "https://placehold.co/800x640/F1E7D2/7A5A22?text=Test+Product",
-    description: "Just here to preview how a new product card looks. Safe to remove anytime.",
-    badge: "New",
-    inStock: true
-  },
-  {
     name: "The Golden Hour Box",
     category: "Boxes",
     price: 650,
